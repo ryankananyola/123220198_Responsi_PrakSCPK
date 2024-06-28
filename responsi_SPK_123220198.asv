@@ -82,7 +82,7 @@ opts = detectImportOptions('PlayerFIFA.csv');
 opts.SelectedVariableNames = (1:10);
 data = readtable('PlayerFIFA.csv', opts);
 data = table2cell(data);
-data = data(:,[1,3,7:9]);
+data = data(:,1:10);
 set(handles.tabelAwal_198, 'Data', data);
 
 % --- Executes on button press in proses_198.
@@ -100,7 +100,7 @@ tabel = tabel(:,1:10);
 bobot = [0.30 0.30 0.20 0.20];
 k = [1,1,1,0];
 dataTable = get(handles.tabelAwal_198, 'Data');
-dataTable = dataTable(:, [3:5,2]);
+dataTable = dataTable(:, [7:9,3]);
 dataTable = cell2mat(dataTable);
 
 %normalisasi bobot
@@ -123,11 +123,8 @@ end
 
 % Menetapkan hasil ke tabel
 data = readtable('PlayerFIFA.csv');
-namaPemain = data(:, 1);
+namaPemain = data(:, 3);
 namaPemain = table2cell(namaPemain);
 hasil = [num2cell(skor'), namaPemain];
 hasil = sortrows(hasil, -1);
-
-jumlahPemain = min(10, size(hasil, 1));
-hasilNama = hasil(1:jumlahPemain,2);
-set(handles.tabelHasil_198, 'Data', hasilNama);
+set(handles.tabelHasil_198, 'Data', hasil);
